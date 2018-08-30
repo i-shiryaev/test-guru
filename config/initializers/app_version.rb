@@ -1,6 +1,3 @@
-class Configuration
-  class << self
-    attr_accessor :app_version
-  end
-  @app_version = 1.0.0
+module TestGuru
+  VERSION = '1.0.1'
 end
