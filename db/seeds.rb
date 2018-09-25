@@ -18,7 +18,8 @@ categories = Category.create([
 ])
 
 tests = Test.create([
-  { title: 'Ruby', level: 1 },
+  { title: 'Ruby', level: 1, category_id: categories[0].id },
+  { title: 'Python', level: 1, category_id: categories[0].id },
   { title: 'JavaScript', level: 2 },
   { title: 'Machine Learning', level: 3 }
 ])
