@@ -25,8 +25,8 @@ tests = Test.create!([
 ])
 
 passed_tests = PassedTest.create!([
-    { passed: true, user_id: users[0].id, test_id: tests[0] },
-    { passed: true, user_id: users[0].id, test_id: tests[3] }
+    { passed: true, user_id: users[0].id, test_id: tests[0].id },
+    { passed: true, user_id: users[0].id, test_id: tests[3].id }
 ])
 
 questions = Question.create!([
