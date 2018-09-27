@@ -17,12 +17,16 @@ categories = Category.create!([
   { title: 'Data science' }
 ])
 
+begin
 tests = Test.create!([
   { title: 'Ruby', level: 1, category_id: categories[0].id, author_id: users[0].id },
   { title: 'Python', level: 1, category_id: categories[0].id, author_id: users[0].id },
-  { title: 'JavaScript', level: 2, author_id: users[0].id },
-  { title: 'Machine Learning', level: 3, author_id: users[0].id }
+  { title: 'JavaScript', level: 2, category_id: categories[1].id, author_id: users[0].id },
+  { title: 'Machine Learning', level: 3, category_id: categories[2].id, author_id: users[0].id }
 ])
+rescue ActiveRecord::RecordInvalid => e
+  binding.irb
+end
 
 passed_tests = PassedTest.create!([
     { passed: true, user_id: users[0].id, test_id: tests[0].id },
