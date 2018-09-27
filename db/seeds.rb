@@ -18,10 +18,10 @@ categories = Category.create!([
 ])
 
 tests = Test.create!([
-  { title: 'Ruby', level: 1, category_id: categories[0].id },
-  { title: 'Python', level: 1, category_id: categories[0].id },
-  { title: 'JavaScript', level: 2 },
-  { title: 'Machine Learning', level: 3 }
+  { title: 'Ruby', level: 1, category_id: categories[0].id, author_id: users[0].id },
+  { title: 'Python', level: 1, category_id: categories[0].id, author_id: users[0].id },
+  { title: 'JavaScript', level: 2, author_id: users[0].id },
+  { title: 'Machine Learning', level: 3, author_id: users[0].id }
 ])
 
 passed_tests = PassedTest.create!([
