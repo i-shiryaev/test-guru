@@ -18,27 +18,27 @@ categories = Category.create!([
 ])
 
 tests = Test.create!([
-  { title: 'Ruby', level: 1, category_id: categories[0].id, author_id: users[0].id },
-  { title: 'Python', level: 1, category_id: categories[0].id, author_id: users[0].id },
-  { title: 'JavaScript', level: 2, category_id: categories[1].id, author_id: users[0].id },
-  { title: 'Machine Learning', level: 3, category_id: categories[2].id, author_id: users[0].id }
+  { title: 'Ruby', level: 1, category: categories[0], author: users[0] },
+  { title: 'Python', level: 1, category: categories[0], author: users[0] },
+  { title: 'JavaScript', level: 2, category: categories[1], author: users[0] },
+  { title: 'Machine Learning', level: 3, category: categories[2], author: users[0] }
 ])
 
 passed_tests = PassedTest.create!([
-    { passed: true, user_id: users[0].id, test_id: tests[0].id },
-    { passed: true, user_id: users[0].id, test_id: tests[1].id },
-    { passed: true, user_id: users[0].id, test_id: tests[3].id }
+    { passed: true, user: users[0], test: tests[0] },
+    { passed: true, user: users[0], test: tests[1] },
+    { passed: true, user: users[0], test: tests[3] }
 ])
 
 questions = Question.create!([
   {
     body: 'The difference between using double quotes '\
           'and single quotes to make a string, is',
-    test_id: tests[0].id
+    test: tests[0]
   },
   {
     body: 'Instance variables in ruby are prefixed by _____ symbol',
-    test_id: tests[0].id
+    test: tests[0]
   }
 ])
 
@@ -47,24 +47,24 @@ answers = Answer.create!([
     body: 'Single quotes will ignore any variables it finds with #{}, '\
           'while double quotes will replace the variables it finds with #{}',
     correct: true,
-    question_id: questions[0].id
+    question: questions[0]
   },
   {
     body: 'Double quotes will ignore any variables it finds with #{}, '\
           'while single quotes will replace the variables it finds with #{}',
-    question_id: questions[0].id
+    question: questions[0]
   },
   {
     body: '@',
     correct: true,
-    question_id: questions[1].id
+    question: questions[1]
   },
   {
     body: '^',
-    question_id: questions[1].id
+    question: questions[1]
   },
   {
     body: '$',
-    question_id: questions[1].id
+    question: questions[1]
   }
 ])
