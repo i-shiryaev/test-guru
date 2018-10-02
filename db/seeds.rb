@@ -21,7 +21,8 @@ tests = Test.create!([
   { title: 'Ruby', level: 1, category: categories[0], author: users[0] },
   { title: 'Python', level: 1, category: categories[0], author: users[0] },
   { title: 'JavaScript', level: 2, category: categories[1], author: users[0] },
-  { title: 'Machine Learning', level: 3, category: categories[2], author: users[0] }
+  { title: 'ActiveRecord', level: 3, category: categories[0], author: users[1] },
+  { title: 'Machine Learning', level: 5, category: categories[2], author: users[1] }
 ])
 
 passed_tests = PassedTest.create!([
