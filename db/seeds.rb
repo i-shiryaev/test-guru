@@ -67,5 +67,14 @@ answers = Answer.create!([
   {
     body: '$',
     question: questions[1]
+  },
+  {
+    body: '1',
+    question: questions[1]
+  },
+  {
+    body: '2',
+    question: questions[1]
   }
+
 ])
