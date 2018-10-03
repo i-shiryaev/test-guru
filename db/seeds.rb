@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create!([
-  { username: 'Admin', password: 'foobar' },
-  { username: 'jorah_mormont', password: 'friendzone' }
+  { username: 'Admin', password: 'foobar', email: 'admin@example.com' },
+  { username: 'jorah_mormont', password: 'friendzone', email: 'jorah@example.com' }
 ])
 
 categories = Category.create!([
@@ -21,7 +21,8 @@ tests = Test.create!([
   { title: 'Ruby', level: 1, category: categories[0], author: users[0] },
   { title: 'Python', level: 1, category: categories[0], author: users[0] },
   { title: 'JavaScript', level: 2, category: categories[1], author: users[0] },
-  { title: 'Machine Learning', level: 3, category: categories[2], author: users[0] }
+  { title: 'ActiveRecord', level: 3, category: categories[0], author: users[1] },
+  { title: 'Machine Learning', level: 5, category: categories[2], author: users[1] }
 ])
 
 passed_tests = PassedTest.create!([
@@ -66,5 +67,9 @@ answers = Answer.create!([
   {
     body: '$',
     question: questions[1]
-  }
+  },
+  {
+    body: '*',
+    question: questions[1]
+  },
 ])
