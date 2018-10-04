@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
-  protect_from_forgery with: :null_session
-
-  before_action :find_test, only: %i[index show new]
+  before_action :find_test, only: %i[index new create]
+  before_action :find_question, only: %i[show destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
@@ -12,18 +11,15 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.create(test_id: params[:test_id], body: params[:body])
-    question.save
-    redirect_to action: 'index', id: params[:test_id]
+    @test.questions.create(question_params)
+    redirect_to action: 'index', id: @test.id
   end
 
   def new
-    @test_id = @test.id
   end
 
   def destroy
-    question = Questions.find(params[:id])
-    question.destroy
+    @question.destroy
     redirect_to action: 'index', id: params[:test_id]
   end
 
@@ -33,7 +29,15 @@ class QuestionsController < ApplicationController
     @test = Test.find(params[:test_id])
   end
 
+  def find_question
+    @question = Question.find(params[:id])
+  end
+
+  def question_params
+    params.require(:question).permit(:body)
+  end
+
   def rescue_with_question_not_found
-    render html: "<p>Question doesn't exist</p>".safe_html
+    render html: "<p>Question doesn't exist.</p>".html_safe
   end
 end
