@@ -7,15 +7,19 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
   end
 
   def create
-    @test.questions.create(question_params)
-    redirect_to action: 'index', id: @test.id
+    @question = @test.questions.new(question_params)
+    if @question.save
+      redirect_to action: 'index', id: @question.test_id
+    else
+      render :new
+    end
   end
 
   def new
+    @question = @test.questions.new
   end
 
   def destroy

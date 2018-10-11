@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
-<body>
-  <form action="/tests/<%= @test.id %>/questions" method="post">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <p>
-      Question:<br>
-      <input type="text" name="question[body]">
-    </p><br>
-    <input type="submit" value="Save">
-  </form>
-</body>
-</html>
+<h1>Create new question:</h1>
+
+<%= form_with model: [@test, @question] do |form| %>
+  <p>
+    <%= form.label :title %></br>
+    <%= form.text_field :body %>
+  </p></br>
+  <p><%= form.submit %></p>
+<% end %>
