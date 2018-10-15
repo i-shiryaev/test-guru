@@ -36,7 +36,6 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     redirect_to test_questions_path(@question.test_id)
-    #redirect_to action: 'index'
   end
 
   private
