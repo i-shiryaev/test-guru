@@ -1,7 +1,6 @@
 <p><%= @test.title %></p></br>
+<p>
+  <%= link_to 'New question', new_test_question_path(@test) %>
+</p>
 <p>Questions:</p></br>
-<ul>
-  <% @test.questions.each do |question| %>
-    <li><%= question.body %></li>
-  <% end %>
-</ul>
+<%= render 'shared/questions_list' %>

@@ -1,7 +1,4 @@
-<table>
-  <% @test.questions.each do |question| %>
-    <tr>
-      <td><%= question.body %></td>
-    </tr>
-  <% end %>
-</table>
+<p>
+  <%= link_to 'New question', new_test_question_path %>
+</p>
+<%= render 'shared/questions_list' %>
