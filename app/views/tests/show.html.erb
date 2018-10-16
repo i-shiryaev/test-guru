@@ -3,4 +3,11 @@
   <%= link_to 'New question', new_test_question_path(@test) %>
 </p>
 <p>Questions:</p></br>
-<%= render partial: 'questions_list', object: @test.questions, as: 'questions' %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th colspan="3">Actions</th>
+  </tr>
+    <%= render @test.questions %>
+</table>

@@ -1,4 +1,4 @@
 <p><%= @question.body %></p>
 
 <%= link_to 'Edit', edit_question_path %> |
-<%= link_to 'Back', test_path(id: @question.test.id) %>
+<%= link_to 'Back', test_path(@question.test) %>
