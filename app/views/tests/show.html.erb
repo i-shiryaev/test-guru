@@ -3,4 +3,4 @@
   <%= link_to 'New question', new_test_question_path(@test) %>
 </p>
 <p>Questions:</p></br>
-<%= render 'shared/questions_list' %>
+<%= render partial: 'questions_list', object: @test.questions, as: 'questions' %>
