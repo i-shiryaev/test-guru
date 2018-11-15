@@ -7,7 +7,7 @@ class Answer < ApplicationRecord
   scope :correct, -> { where(correct: true) }
 
   def validate_answers_amount
-    if question.answers.size >= 4
+    if question.answers.size > 4
       errors.add(:answers, 'question must contain up to 4 answers')
     end
   end
