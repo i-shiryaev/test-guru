@@ -36,7 +36,7 @@ class TestsController < ApplicationController
 
   def destroy
     @test.destroy
-    redirect_to :tests_path
+    redirect_to action: 'index'
   end
 
   def start
