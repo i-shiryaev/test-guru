@@ -6,8 +6,8 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_first_question, on: :create
   before_save :before_save_set_next_question
 
-  def accept!(answer_ids)
-    if correct_answer?(answer_ids)
+  def accept!(answers_ids)
+    if correct_answer?(answers_ids)
       self.correct_question += 1
     end
 
@@ -22,13 +22,26 @@ class TestPassage < ApplicationRecord
     test.questions.size - remaining_questions.size
   end
 
+  def result_message
+    action = success? ? 'completed' : 'failed'
+    "You #{action} the test."
+  end
+
+  def success?
+    correct_answers_percentage >= 85
+  end
+
+  def correct_answers_percentage
+    correct_question.to_f / test.questions.size * 100
+  end
+
   private
 
   def before_validation_set_first_question
     self.current_question = test.questions.first if test.present?
   end
 
-  def correct_answer?(answer_ids)
+  def correct_answer?(answers_ids)
     correct_answers.ids.sort == Array(answers_ids).map(&:to_i).sort
   end
 
