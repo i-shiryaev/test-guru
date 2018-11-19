@@ -3,14 +3,10 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  before_validation :before_validation_set_first_question, on: :create
-  before_save :before_save_set_next_question
+  before_validation :next_question
 
   def accept!(answers_ids)
-    if correct_answer?(answers_ids)
-      self.correct_question += 1
-    end
-
+    self.correct_question += 1 if correct_answer?(answers_ids)
     save!
   end
 
@@ -18,13 +14,8 @@ class TestPassage < ApplicationRecord
     current_question.nil?
   end
 
-  def question_place
-    test.questions.size - remaining_questions.size
-  end
-
-  def result_message
-    action = success? ? 'completed' : 'failed'
-    "You #{action} the test."
+  def question_number
+    completed_questions.size + 1
   end
 
   def success?
@@ -37,8 +28,12 @@ class TestPassage < ApplicationRecord
 
   private
 
-  def before_validation_set_first_question
-    self.current_question = test.questions.first if test.present?
+  def next_question
+    if current_question.nil?
+      self.current_question = test.questions.first if test.present?
+    else
+      self.current_question = remaining_questions.first
+    end
   end
 
   def correct_answer?(answers_ids)
@@ -49,11 +44,11 @@ class TestPassage < ApplicationRecord
     current_question.answers.correct
   end
 
-  def before_save_set_next_question
-    self.current_question = remaining_questions.first
-  end
-
   def remaining_questions
     test.questions.order(:id).where('id > ?', current_question.id)
+  end
+
+  def completed_questions
+    test.questions.order(:id).where('id < ?', current_question.id)
   end
 end
