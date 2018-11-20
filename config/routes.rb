@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
 
   resources :test_passages, only: %i[show update] do
-    get :start, on: :member
+    get :result, on: :member
   end
 end
