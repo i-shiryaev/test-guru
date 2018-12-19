@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  protect_from_forgery prepend: true, with: :exception
+
   def new
   end
 
@@ -11,5 +13,10 @@ class SessionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    session.delete(:user_id)
+    redirect_to root_path
   end
 end

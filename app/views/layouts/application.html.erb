@@ -9,8 +9,12 @@
   </head>
 
   <body>
+    <%= render 'shared/header' %>
     <% if logged_in? %>
-      <p class='nav user'>Welcome, <b><%= current_user.email %></b> Guru</p>
+      <p class='nav user'>Welcome, <b><%= current_user.email %></b> Guru
+        [<%= link_to 'Logout', session_path %>]
+      </p>
+
     <% end %>
     <%= yield %>
     <%= render 'shared/footer' %>
