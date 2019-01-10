@@ -9,13 +9,14 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to tests_path
+      # redirect_to tests_path
+      redirect_to cookies[:path]
     else
       render :new
     end
   end
 
-  def logout
+  def delete
     session.delete(:user_id)
     redirect_to root_path
   end
